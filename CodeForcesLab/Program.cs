@@ -7,28 +7,23 @@ namespace CodeForcesLab
     {
         static void Main(string[] args)
         {
-            string Code = Console.ReadLine();
-
-            var codeArr = Code.ToCharArray();
-
-            string res = "";
-
-            for (int i = 0; i < Code.Length; i++)
+            int number = int.Parse(Console.ReadLine());
+            while (!CheckDistinctDigits(++number)) ;
+            Console.WriteLine(number);
+        }
+        private static bool CheckDistinctDigits(int number)
+        {
+            int temp = number;
+            bool[] arr = new bool[10];
+            while (temp != 0)
             {
-                if (codeArr[i] == '.')
-                    res += '0';
-                else if (codeArr[i] == '-' && codeArr[i + 1] == '.')
-                {
-                    res += '1';
-                    i++;
-                }
-                else if (codeArr[i] == '-' && codeArr[i + 1] == '-')
-                {
-                    res += '2';
-                    i++;
-                }
+                if (arr[temp % 10])
+                    return false;
+                else
+                    arr[temp % 10] = true;
+                temp /= 10;
             }
-            Console.WriteLine(res);
+            return true;
         }
     }
 }
