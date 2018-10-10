@@ -7,28 +7,28 @@ namespace CodeForcesLab
     {
         static void Main(string[] args)
         {
-            int chNum = 0, secNum = 0;
-            string queue;
-            var numssArr = Console.ReadLine();
+            string Code = Console.ReadLine();
 
-            chNum = int.Parse(numssArr.Split(' ')[0]);
-            secNum = int.Parse(numssArr.Split(' ')[1]);
+            var codeArr = Code.ToCharArray();
 
-            queue = Console.ReadLine();
-            var quArr = queue.ToCharArray();
-            for (int i = 0; i < secNum; i++)
+            string res = "";
+
+            for (int i = 0; i < Code.Length; i++)
             {
-                for (int j = 0; j < chNum - 1; j++)
+                if (codeArr[i] == '.')
+                    res += '0';
+                else if (codeArr[i] == '-' && codeArr[i + 1] == '.')
                 {
-                    if (quArr[j] == 'B' && quArr[j + 1] == 'G')
-                    {
-                        quArr[j] = 'G';
-                        quArr[j + 1] = 'B';
-                        j++;
-                    }
+                    res += '1';
+                    i++;
+                }
+                else if (codeArr[i] == '-' && codeArr[i + 1] == '-')
+                {
+                    res += '2';
+                    i++;
                 }
             }
-            Console.WriteLine(quArr);
+            Console.WriteLine(res);
         }
     }
 }
