@@ -7,34 +7,28 @@ namespace CodeForcesLab
     {
         static void Main(string[] args)
         {
-            int[,] matrix = new int[5, 5];
-            int curI = -1, curJ = -1;
+            int chNum = 0, secNum = 0;
+            string queue;
+            var numssArr = Console.ReadLine();
 
-            for (int i = 0; i < 5; i++)
-            {
-                string line = Console.ReadLine();
-                var numsStrArr = line.Split(' ');
+            chNum = int.Parse(numssArr.Split(' ')[0]);
+            secNum = int.Parse(numssArr.Split(' ')[1]);
 
-                for (int j = 0; j < 5; j++)
-                {
-                    matrix[i, j] = int.Parse(numsStrArr[j]);
-                }
-            }
-            for (int i = 0; i < 5; i++)
+            queue = Console.ReadLine();
+            var quArr = queue.ToCharArray();
+            for (int i = 0; i < secNum; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < chNum - 1; j++)
                 {
-                    if (matrix[i, j] == 1)
+                    if (quArr[j] == 'B' && quArr[j + 1] == 'G')
                     {
-                        curI = i;
-                        curJ = j;
+                        quArr[j] = 'G';
+                        quArr[j + 1] = 'B';
+                        j++;
                     }
                 }
             }
-            int movesNum = 0;
-            movesNum += (curI > 2) ? (curI - 2) : (2 - curI);
-            movesNum += (curJ > 2) ? (curJ - 2) : (2 - curJ);
-            Console.WriteLine(movesNum);
+            Console.WriteLine(quArr);
         }
     }
 }
