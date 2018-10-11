@@ -6,15 +6,13 @@ namespace CodeForcesLab
         static void Main(string[] args)
         {
             string word = Console.ReadLine();
-            int lower = 0, upper = 0;
-            for (int i = 0; i < word.Length; i++)
+            char [] temp;
+            if (word[0] > 90)
             {
-                if (word[i] > 90)
-                    lower++;
-                else
-                    upper++;
+                temp = word.ToCharArray();
+                temp[0] = word[0].ToString().ToUpper()[0];
+                word = new string(temp);
             }
-            word = (lower >= upper) ? word.ToLower() : word.ToUpper();
             Console.WriteLine(word);
         }
     }
