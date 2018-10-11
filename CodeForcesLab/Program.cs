@@ -5,15 +5,26 @@ namespace CodeForcesLab
     {
         static void Main(string[] args)
         {
-            string word = Console.ReadLine();
-            char [] temp;
-            if (word[0] > 90)
+            string number = Console.ReadLine();
+            int luckyNums = 0;
+            for (int i = 0; i < number.Length; i++)
             {
-                temp = word.ToCharArray();
-                temp[0] = word[0].ToString().ToUpper()[0];
-                word = new string(temp);
+                if (number[i] == 52 || number[i] == 55)
+                    luckyNums++;
             }
-            Console.WriteLine(word);
+            if (CheckEachDigit(luckyNums))
+                Console.WriteLine("YES");
+            else
+                Console.WriteLine("NO");
+        }
+        private static bool CheckEachDigit(int luckyNums)
+        {
+            string num = luckyNums.ToString();
+
+            for (int i = 0; i < num.Length; i++)
+                if (num[i] != '4' && num[i] != '7')
+                    return false;
+            return true;
         }
     }
 }
